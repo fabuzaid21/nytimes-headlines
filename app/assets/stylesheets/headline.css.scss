@@ -1,0 +1,18 @@
+// Place all the styles related to the headline controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#legend {
+  margin-bottom: 20px;
+}
+
+#y_axis {
+  position: absolute;
+  top: 65px;
+  bottom: 0;
+  width: 40px;
+}
+
+#chart {
+  position: relative;
+  left: 40px;
+}

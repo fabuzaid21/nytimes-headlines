@@ -1,0 +1,10 @@
+<%= form_tag('/headline', method: 'get') do %>
+  <%= label_tag(:query, 'Search for:') %>
+  <%= text_field_tag(:query) %>
+  <%= submit_tag('Add to Graph', :class => :btn, :id => :search) %>
+<% end %>
+<div id='chart_container' style='position: relative'>
+    <div id='legend'></div>
+    <div id='y_axis'></div>
+    <div id='chart'></div>
+</div>

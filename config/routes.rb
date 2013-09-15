@@ -1,4 +1,7 @@
 NytimesHeadlines::Application.routes.draw do
+  match '/' => 'headline#index', via: :get
+  match '/headlines' => 'headline#query', via: :get
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

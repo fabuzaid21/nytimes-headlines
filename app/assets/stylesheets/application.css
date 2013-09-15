@@ -9,5 +9,10 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require rickshaw
  *= require_tree .
  */
+/*#chart .nv-lineChart circle.nv-point
+{
+    fill-opacity: 1;
+}*/
