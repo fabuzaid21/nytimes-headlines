@@ -52,6 +52,8 @@ GEM
       mime-types (~> 1.15)
       multi_json (~> 1.0)
       rest-client (~> 1.6.1)
+    d3-rails (0.0.5)
+      railties (>= 3.1)
     erubis (2.7.0)
     execjs (2.0.1)
     hike (1.2.3)
@@ -102,8 +104,6 @@ GEM
     ref (1.0.5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    rickshaw_rails (1.4.3)
-      railties (>= 3.1.0)
     sass (3.2.10)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -134,11 +134,11 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   couchrest
+  d3-rails
   jquery-rails
   less-rails
   pg
   rails (= 3.2.13)
-  rickshaw_rails
   sass-rails (~> 3.2.3)
   sqlite3
   therubyracer

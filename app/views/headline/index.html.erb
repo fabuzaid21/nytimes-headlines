@@ -1,10 +1,11 @@
-<%= form_tag('/headline', method: 'get') do %>
-  <%= label_tag(:query, 'Search for:') %>
-  <%= text_field_tag(:query) %>
-  <%= submit_tag('Add to Graph', :class => :btn, :id => :search) %>
+<%= form_tag('/headline', method: 'get', :class => 'navbar-form pull-left') do %>
+  <div id='search-input-container' class='control-group'>
+    <%= text_field_tag(:query, '', :class => 'search-query', :placeholder => 'Search') %>
+    <%= submit_tag('Add to Graph', :class => :btn, :id => :search) %>
+    <div id='spinner'></div>
+  </div>
 <% end %>
-<div id='chart_container' style='position: relative'>
-    <div id='legend'></div>
-    <div id='y_axis'></div>
-    <div id='chart'></div>
-</div>
+<div id='chart-container'><svg id='chart'></svg></div>
+<%= javascript_include_tag 'http://canvg.googlecode.com/svn/trunk/rgbcolor.js' %>
+<%= javascript_include_tag 'http://canvg.googlecode.com/svn/trunk/StackBlur.js' %>
+<%= javascript_include_tag 'http://canvg.googlecode.com/svn/trunk/canvg.js' %>

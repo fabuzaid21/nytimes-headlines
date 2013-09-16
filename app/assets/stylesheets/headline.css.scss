@@ -1,18 +1,20 @@
 // Place all the styles related to the headline controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#legend {
-  margin-bottom: 20px;
+#canvas {
+  display: none;
 }
-
-#y_axis {
-  position: absolute;
-  top: 65px;
-  bottom: 0;
-  width: 40px;
+#spinner {
+  display: inline-block;
+  margin-left: 10px;
 }
+#chart 
+{
+    width: 900px;
+    height: 600px;
+    margin-top: 85px;
 
-#chart {
-  position: relative;
-  left: 40px;
+    .nv-lineChart circle.nv-point {
+      fill-opacity: 1;
+    }
 }

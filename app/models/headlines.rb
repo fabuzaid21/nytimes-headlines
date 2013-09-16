@@ -5,10 +5,18 @@ class Headlines < ActiveRecord::Base
   SEARCH_VIEW = '_design/headlines/_search/headline_title'
 
   def self.text_search(query)
+    has_results = false
     results = @@years.map do |year|
-      { x: Time.new(year).to_i, y: @db.view(SEARCH_VIEW, :q => "year:'#{year}' AND title:#{query}", :limit => 1)['total_rows'] }
-      #{ x: year, y: @db.view(SEARCH_VIEW, :q => "year:'#{year}' AND title:#{query}", :limit => 1)['total_rows'] }
+      #{ x: Time.new(year).to_i, y: @db.view(SEARCH_VIEW, :q => "year:'#{year}' AND title:#{query}", :limit => 1)['total_rows'] }
+      num_headlines = @db.view(SEARCH_VIEW, :q => "year:'#{year}' AND title:#{query}", :limit => 1)['total_rows']
+      has_results ||= num_headlines != 0
+      [ year, num_headlines ]
     end
-    return results
+
+    unless has_results
+      return []
+    end
+
+    results
   end
 end

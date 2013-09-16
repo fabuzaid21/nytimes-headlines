@@ -11,4 +11,6 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require rickshaw_with_d3
+//= require d3
+//= require nv.d3
+//= require spin.min
