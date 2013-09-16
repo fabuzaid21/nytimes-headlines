@@ -968,6 +968,8 @@ nv.utils.optionsFunc = function(args) {
   //------------------------------------------------------------
 
   var scale0;
+  var first_time = true,
+      second_time = true;
 
   //============================================================
 
@@ -1148,8 +1150,18 @@ nv.utils.optionsFunc = function(args) {
           if (showMaxMin) {
             var axisMaxMin = wrap.selectAll('g.nv-axisMaxMin')
                            .data(scale.domain());
-            axisMaxMin.enter().append('g').attr('class', 'nv-axisMaxMin').append('text')
-                .style('opacity', 0);
+            if (first_time) {
+              axisMaxMin.enter().append('g').attr('class', 'nv-axisMaxMin axis-hide').append('text')
+                  .style('opacity', 0);
+              first_time = false;
+            } else if (second_time) {
+              axisMaxMin.enter().append('g').attr('class', 'nv-axisMaxMin axis-hide').append('text')
+                  .style('opacity', 0);
+              second_time = false;
+            } else {
+              axisMaxMin.enter().append('g').attr('class', 'nv-axisMaxMin').append('text')
+                  .style('opacity', 0);
+            }
             axisMaxMin.exit().remove();
             axisMaxMin
                 .attr('transform', function(d,i) {
@@ -1181,7 +1193,10 @@ nv.utils.optionsFunc = function(args) {
         //check if max and min overlap other values, if so, hide the values that overlap
         g.selectAll('g') // the g's wrapping each tick
             .each(function(d,i) {
-              d3.select(this).select('text').attr('opacity', 1);
+              if (first_time || second_time)
+                d3.select(this).attr('class', 'axis-hide').select('text').attr('opacity', 1);
+              else
+                d3.select(this).select('text').attr('opacity', 1);
               if (scale(d) < scale.range()[1] + 10 || scale(d) > scale.range()[0] - 10) { // 10 is assuming text height is 16... if d is 0, leave it!
                 if (d > 1e-10 || d < -1e-10) // accounts for minor floating point errors... though could be problematic if the scale is EXTREMELY SMALL
                   d3.select(this).attr('opacity', 0);

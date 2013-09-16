@@ -1,6 +1,8 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+# $('.nv-y.nv-axis g  g  g text').attr('style', 'opacity: 0')
+# $('.nv-y.nv-axis .nv-axisMaxMin text').attr('style', 'opacity: 0')
 
 class ChartGrapher
 
@@ -14,6 +16,12 @@ class ChartGrapher
       values: results
     })
     this.graph()
+    #only need to do this once
+    if (@data.length >= 1)
+      this.showAxes()
+
+  showAxes: () ->
+    d3.select('.nv-y.nv-axis').selectAll('.axis-hide').classed('axis-hide', false)
 
   graph: () ->
     self = this
