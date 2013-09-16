@@ -18,9 +18,9 @@ class ChartGrapher
     this.graph()
     #only need to do this once
     if (@data.length >= 1)
-      this.showAxes()
+      this.showYAxis()
 
-  showAxes: () ->
+  showYAxis: () ->
     d3.select('.nv-y.nv-axis').selectAll('.axis-hide').classed('axis-hide', false)
 
   graph: () ->
@@ -35,13 +35,17 @@ class ChartGrapher
 
         self.chart.xAxis
           .axisLabel('Year')
-          .tickFormat((d) -> return d3.time.format('%Y')(new Date('' + d, '0', '1')))
+          .tickValues([2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010])
+          .tickFormat((d, i) ->
+            return d3.time.format('%Y')(new Date('' + d, '0', '1'))
+          )
 
         self.chart.yAxis
           .axisLabel('Number of Headlines')
           .tickFormat(d3.format(',.0f'))
 
         self.chart.forceY([0])
+        self.chart.forceX([2001, 2010])
         self.chart.interactiveLayer.tooltip.gravity('s').distance(10)
         self.chart.tooltipContent((key, x, y) ->
           '<h3>' + key + '</h3>' + '<p>' +  y + ' in ' + x + '</p>'
